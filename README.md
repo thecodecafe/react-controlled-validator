@@ -1,2 +1,2 @@
 # React Controlled Validator
-Listenable variable
+Still a work in progress, docs coming soon. :D
