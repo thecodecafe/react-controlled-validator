@@ -21,11 +21,11 @@ export class IsRequiredWith extends Rule
             var parent:string = this.parents[i];
             if(this.form[parent] === undefined || this.form[parent] === null)
             {
-                return this.getError();
+                return true;
             }
         }
         if(value === undefined || value === null) {
-            return false;
+            return this.getError();
         }
         value = value+'';
         return value.length > 0 || this.getError();
