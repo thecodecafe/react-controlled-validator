@@ -11,7 +11,6 @@ export class Accepted extends Rule
     {
         return value === true || this.getError();
     }
-
     toString()
     {
         return 'accepted';
