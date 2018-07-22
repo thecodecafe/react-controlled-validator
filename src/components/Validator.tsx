@@ -1,43 +1,19 @@
 import * as React from 'react';
 import startCase = require('lodash/startCase');
-import { Rules } from '../rules/_';
 import { ApplyRule } from '../rules/ApplyRule';
+import { Props, States, ValidationState, Form, Messages } from '../utils/intefaces';
 
-interface RulesInterface {
-    [key:string]:  Array<string>
-}
-
-interface Messages {
-    [key:string]:  string
-}
-
-interface Form {
-    [key:string]:  any
-}
-
-interface Props {
-    touched: Array<string>;
-    form: Form;
-    rules: RulesInterface;
-    messages: Messages;
-    onChange: Function;
-}
-
-interface States {
-    touched: Array<string>
-}
-
-interface ValidationState {
-    valid: boolean,
-    fields: ValidationStateFields
-}
-
-interface ValidationStateFields {
-    [key:string]: any
-}
-
+/**
+ * Instantiate the apply rule class.
+ * The apply rule contains all inbuilt rules
+ * that come with the library
+ */
 const Rule = new ApplyRule;
 
+/**
+ * The validator component is where all the magic happens,
+ * this is where the validation takes place
+ */
 class Validator extends React.Component<Props, States>
 {
     constructor(props:Props)
