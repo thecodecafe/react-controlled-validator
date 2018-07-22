@@ -6,7 +6,7 @@ export class IsDiscoverCard extends Rule
     constructor()
     {
         super();
-        this.failed('Not a discover card.');
+        this.failed('That is not a discover card.');
     }
     valid(value: string)
     {
@@ -15,6 +15,6 @@ export class IsDiscoverCard extends Rule
 
     toString()
     {
-        return 'IsDiscoverCard'.toLowerCase();
+        return 'is discover card';
     }
 }

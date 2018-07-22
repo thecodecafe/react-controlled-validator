@@ -7,7 +7,7 @@ export class Max extends Rule
     {
         super();
         this.max = parseInt(max);
-        this.failed(`Field cannot be greater than ${max} in value.`);
+        this.failed(`:field cannot be greater than ${max} in value.`);
     }
 
     valid(value: string)
@@ -17,6 +17,6 @@ export class Max extends Rule
 
     toString()
     {
-        return 'Max'.toLowerCase();
+        return 'max';
     }
 }

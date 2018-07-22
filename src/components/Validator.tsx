@@ -89,11 +89,10 @@ class Validator extends React.Component<Props, States>
                 value: form[field],
                 touched: this.props.touched.indexOf(field) != -1 ? true : false,
                 error: validation.error, 
-                valid: validation.valid
             };
 
-            if(!validation.valid) 
-            { states.valid = false; }
+            // set validator validity state to false if any field is invalid
+            if(!validation.error) states.valid = false;
         }
 
         // fire on state change listener
@@ -104,8 +103,7 @@ class Validator extends React.Component<Props, States>
     private getDataValidity(field:string, value:any, rules:Array<string>, messages?:Messages)
     {
         // 
-        var valid = true, 
-            error = null, 
+        var error:string|false|null = null, 
             rule,
             customMessage:string|false;
         
@@ -120,25 +118,32 @@ class Validator extends React.Component<Props, States>
                 // aply rules to field
                 var appliedRule = Rule.apply(this.props.form, value, rule[0], rule[1] || '');
 
-                // set custom message
-                customMessage = typeof messages[field+rule[0]] == 'string' 
-                                ? messages[field+rule[0]] 
-                                : typeof appliedRule.error == 'string' 
-                                    ? appliedRule.error : false;
+                if(rule[0] == 'sometimes' && appliedRule.error == false){
+                    error = false;
+                    break;
+                }
+
+                // set custom message when there is an error
+                if(typeof appliedRule.error == 'string'){
+                    customMessage = typeof messages[field+rule[0]] == 'string' 
+                                    ? messages[field+rule[0]] 
+                                    : appliedRule.error;
+                }
 
                 // add field name is specified in the error.
                 if(typeof customMessage == 'string'){
                     customMessage = customMessage.replace(':field', field);
                     customMessage = startCase(customMessage);
                 }
+
                 // set return values
-                valid = appliedRule.error ? false : true; 
-                error = customMessage; break;
+                error = customMessage || false;
+                break;
             }
         }
 
         // 
-        return { error: error, valid: valid };
+        return { error: error };
     }
 
     private updateTouchedData(prevForm:Form, newform:Form)

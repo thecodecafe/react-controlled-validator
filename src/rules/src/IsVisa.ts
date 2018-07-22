@@ -6,7 +6,7 @@ export class IsVisa extends Rule
     constructor()
     {
         super();
-        this.failed('Not a visa.');
+        this.failed('That is not a visa card.');
     }
     valid(value: string)
     {
@@ -15,6 +15,6 @@ export class IsVisa extends Rule
 
     toString()
     {
-        return 'IsVisa'.toLowerCase();
+        return 'is visa';
     }
 }

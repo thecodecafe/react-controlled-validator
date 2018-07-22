@@ -61,3 +61,6 @@ typings/
 .next
 
 foo.js
+
+# compiled package scripts
+lib

@@ -5,7 +5,7 @@ export class IsNGMobile extends Rule
     constructor()
     {
         super();
-        this.failed('Not a Nigerian mobile phone number.');
+        this.failed(':field is not a Nigerian mobile phone number.');
     }
 
     valid(value:string)
@@ -16,6 +16,6 @@ export class IsNGMobile extends Rule
 
     toString()
     {
-        return 'IsNGMobile'.toLowerCase();
+        return 'is NG mobile';
     }
 }

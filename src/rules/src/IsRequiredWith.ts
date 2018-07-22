@@ -1,5 +1,6 @@
 import Rule from '../Rule'
 import { FormInterface } from '../../utils/intefaces';
+import { startCase } from 'lodash';
 
 export class IsRequiredWith extends Rule
 {
@@ -8,18 +9,19 @@ export class IsRequiredWith extends Rule
     constructor(form:FormInterface, parents:string)
     {
         super();
-        if(!form) throw new Error('This field is required.');
+        if(!form) throw new Error('Form not specified for required with.');
         this.form = form;
         this.parents = parents.split(',');
+        this.failed(`:field is required with ${startCase(parents)}.`);
     }
 
-    valid(value:string|boolean|null)
+    valid(value:any)
     {
         for(var i = 0; i < this.parents.length; i++){
             var parent:string = this.parents[i];
             if(this.form[parent] === undefined || this.form[parent] === null)
             {
-                return true;
+                return this.getError();
             }
         }
         if(value === undefined || value === null) {
@@ -31,6 +33,6 @@ export class IsRequiredWith extends Rule
 
     toString()
     {
-        return 'IsRequiredWith'.toLowerCase();
+        return 'is required with';
     }
 }

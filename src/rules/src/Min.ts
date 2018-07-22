@@ -7,7 +7,7 @@ export class Min extends Rule
     {
         super();
         this.min = parseInt(min);
-        this.failed(`Field cannot be lesser than ${min} in value.`);
+        this.failed(`:field cannot be lesser than ${min} in value.`);
     }
 
     valid(value: number)
@@ -17,6 +17,6 @@ export class Min extends Rule
 
     toString()
     {
-        return 'Min'.toLowerCase();
+        return 'min';
     }
 }

@@ -8,7 +8,7 @@ export class Base64Image extends Rule
     {
         super();
         this.formats = formats.replace(new RegExp(/^(\,)$/), '|');
-        this.failed(`Field must be a base 64 image.`);
+        this.failed(`:field must be a base 64 image.`);
     }
 
     valid(value: string)
@@ -19,6 +19,6 @@ export class Base64Image extends Rule
 
     toString()
     {
-        return 'Base64Image'.toLowerCase();
+        return 'base64 image';
     }
 }

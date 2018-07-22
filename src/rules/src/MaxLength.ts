@@ -7,7 +7,7 @@ export class MaxLength extends Rule
     {
         super();
         this.maxLength = parseInt(maxLength);
-        this.failed(`Field cannot be greater than ${maxLength} in length.`);
+        this.failed(`:field cannot be greater than ${maxLength} in length.`);
     }
 
     valid(value: string)
@@ -17,6 +17,6 @@ export class MaxLength extends Rule
 
     toString()
     {
-        return 'MaxLength'.toLowerCase();
+        return 'max length';
     }
 }

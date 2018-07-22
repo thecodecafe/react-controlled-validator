@@ -7,7 +7,7 @@ export class In extends Rule
     {
         super();
         this.list = list.split(',');
-        this.failed('Value was not found in supplied list.');
+        this.failed('The selected option is invalid.');
     }
     valid(value:string|boolean|null)
     {
@@ -16,6 +16,6 @@ export class In extends Rule
 
     toString()
     {
-        return 'IsIn'.toLowerCase();
+        return 'in';
     }
 }

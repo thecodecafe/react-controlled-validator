@@ -6,7 +6,7 @@ export class IsAmericanExpress extends Rule
     constructor()
     {
         super();
-        this.failed('Not a american express.');
+        this.failed('That is not an american express card.');
     }
     valid(value: string)
     {
@@ -15,6 +15,6 @@ export class IsAmericanExpress extends Rule
 
     toString()
     {
-        return 'IsAmericanExpress'.toLowerCase();
+        return 'is american express';
     }
 }

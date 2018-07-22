@@ -5,7 +5,7 @@ export class IsEmail extends Rule
     constructor()
     {
         super();
-        this.failed('Email address is invalid.');
+        this.failed(':field must be a valid email address.');
     }
 
     valid(value:string)
@@ -16,6 +16,6 @@ export class IsEmail extends Rule
 
     toString()
     {
-        return 'IsEmail'.toLowerCase();
+        return 'is email';
     }
 }

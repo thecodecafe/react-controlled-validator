@@ -5,7 +5,7 @@ export class IsPhoneNational extends Rule
     constructor()
     {
         super();
-        this.failed('National phone number is invalid.');
+        this.failed(':field us not a national phone number.');
     }
 
     valid(value:string)
@@ -16,6 +16,6 @@ export class IsPhoneNational extends Rule
 
     toString()
     {
-        return 'IsPhoneNational'.toLowerCase();
+        return 'is phone national';
     }
 }

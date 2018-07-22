@@ -5,7 +5,7 @@ export class IsPhone extends Rule
     constructor()
     {
         super();
-        this.failed('Phone is invalid.');
+        this.failed(':field is not a phone number.');
     }
 
     valid(value:string)
@@ -16,6 +16,6 @@ export class IsPhone extends Rule
 
     toString()
     {
-        return 'IsPhone'.toLowerCase();
+        return 'is phone';
     }
 }

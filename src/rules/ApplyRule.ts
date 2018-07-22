@@ -129,12 +129,12 @@ export class ApplyRule{
                 result['ruleName'] = RuleClass.toString();
             break;
             case 'match':
-                RuleClass = new Match(args);
+                RuleClass = new Match(form, args);
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
             break;
             case 'notMatch':
-                RuleClass = new NotMatch(args);
+                RuleClass = new NotMatch(form, args);
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
             break;

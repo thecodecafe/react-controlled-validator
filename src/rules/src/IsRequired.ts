@@ -5,7 +5,7 @@ export class IsRequired extends Rule
     constructor()
     {
         super();
-        this.failed('This field is required.');
+        this.failed(':field is required.');
     }
 
     valid(value:string|boolean|null)
@@ -19,6 +19,6 @@ export class IsRequired extends Rule
 
     toString()
     {
-        return 'IsRequired'.toLowerCase();
+        return 'is required';
     }
 }

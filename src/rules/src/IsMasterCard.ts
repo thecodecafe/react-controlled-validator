@@ -6,7 +6,7 @@ export class IsMasterCard extends Rule
     constructor()
     {
         super();
-        this.failed('Not a mastercard.');
+        this.failed('That is not a mastercard.');
     }
     valid(value: string)
     {
@@ -15,6 +15,6 @@ export class IsMasterCard extends Rule
 
     toString()
     {
-        return 'IsMasterCard'.toLowerCase();
+        return 'is master card';
     }
 }

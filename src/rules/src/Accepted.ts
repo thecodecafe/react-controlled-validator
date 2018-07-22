@@ -5,7 +5,7 @@ export class Accepted extends Rule
     constructor()
     {
         super();
-        this.failed('Not accepted.');
+        this.failed('Please accept :field.');
     }
     valid(value: boolean)
     {
@@ -14,6 +14,6 @@ export class Accepted extends Rule
 
     toString()
     {
-        return 'Accepted'.toLowerCase();
+        return 'accepted';
     }
 }

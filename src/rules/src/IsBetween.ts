@@ -10,7 +10,7 @@ export class IsBetween extends Rule
         super();
         this.min = parseInt(min);
         this.max = parseInt(max);
-        this.failed(`Field must be greater than or equal to ${min} and less than or equal to ${max}.`);
+        this.failed(`:field must be greater than or equal to ${min} and less than or equal to ${max}.`);
     }
 
     valid(value: string)
@@ -20,6 +20,6 @@ export class IsBetween extends Rule
 
     toString()
     {
-        return 'IsBetween'.toLowerCase();
+        return 'is between';
     }
 }

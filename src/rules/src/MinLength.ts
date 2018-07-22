@@ -7,7 +7,7 @@ export class MinLength extends Rule
     {
         super();
         this.minLength = parseInt(minLength);
-        this.failed(`Field cannot be less than ${minLength} in length.`);
+        this.failed(`:field cannot be less than ${minLength} in length.`);
     }
 
     valid(value: string)
@@ -17,6 +17,6 @@ export class MinLength extends Rule
 
     toString()
     {
-        return 'MinLength'.toLowerCase();
+        return 'min length';
     }
 }

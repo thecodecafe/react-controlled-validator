@@ -5,7 +5,7 @@ export class IsUsername extends Rule
     constructor()
     {
         super();
-        this.failed('Username is invalid.');
+        this.failed(':field only accepts alphanumeric characters and dashes and underscore characters in between.');
     }
 
     valid(value:string)
@@ -16,6 +16,6 @@ export class IsUsername extends Rule
 
     toString()
     {
-        return 'IsUsername'.toLowerCase();
+        return 'is username';
     }
 }

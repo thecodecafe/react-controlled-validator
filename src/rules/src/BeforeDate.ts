@@ -8,7 +8,7 @@ export class BeforeDate extends Rule
     {
         super();
         this.date = new Date(date);
-        this.failed(`Field must be before ${this.date.getFullYear()+'/'+(this.date.getMonth() + 1)+this.date.getDate()}`);
+        this.failed(`:field must be before ${this.date.getFullYear()+'/'+(this.date.getMonth() + 1)+this.date.getDate()}`);
     }
 
     valid(value: string)
@@ -19,6 +19,6 @@ export class BeforeDate extends Rule
 
     toString()
     {
-        return 'AfterDate'.toLowerCase();
+        return 'after date';
     }
 }

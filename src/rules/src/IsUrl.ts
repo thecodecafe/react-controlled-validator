@@ -5,7 +5,7 @@ export class IsUrl extends Rule
     constructor()
     {
         super();
-        this.failed('Please enter a url.');
+        this.failed(':field must be a valid url.');
     }
 
     valid(value:string)
@@ -16,6 +16,6 @@ export class IsUrl extends Rule
 
     toString()
     {
-        return 'IsUrl'.toLowerCase();
+        return 'is url';
     }
 }
