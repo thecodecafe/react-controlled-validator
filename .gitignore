@@ -63,4 +63,4 @@ typings/
 foo.js
 
 # compiled package scripts
-lib
+lib/

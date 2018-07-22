@@ -1,4 +1,4 @@
-import { startCase } from 'lodash';
+import startCase = require('lodash/startCase');
 import Rule from '../Rule'
 import { FormInterface } from '../../utils/intefaces';
 

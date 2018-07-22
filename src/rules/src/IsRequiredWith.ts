@@ -1,6 +1,6 @@
+import startCase = require('lodash/startCase');
 import Rule from '../Rule'
 import { FormInterface } from '../../utils/intefaces';
-import { startCase } from 'lodash';
 
 export class IsRequiredWith extends Rule
 {

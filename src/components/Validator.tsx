@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { startCase } from 'lodash';
+import startCase = require('lodash/startCase');
 import { Rules } from '../rules/_';
 import { ApplyRule } from '../rules/ApplyRule';
 
