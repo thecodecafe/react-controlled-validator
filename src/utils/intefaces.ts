@@ -39,3 +39,7 @@ export interface ValidationState {
 export interface ValidationStateFields {
     [key:string]: any
 }
+
+export interface CARD_TYPES_INTERFACE { [key:string]: string }
+
+export interface CARDS_RANGES_INTERFACE { [key:string]: Array<Array<number>> }

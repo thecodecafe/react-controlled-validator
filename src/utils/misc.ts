@@ -1,5 +1,4 @@
-interface CARD_TYPES_INTERFACE { [key:string]: string }
-interface CARDS_RANGES_INTERFACE { [key:string]: Array<Array<number>> }
+import { CARD_TYPES_INTERFACE, CARDS_RANGES_INTERFACE } from "./intefaces";
 
 export const CARD_TYPES:CARD_TYPES_INTERFACE = {
     DISCOVER: 'discover',
