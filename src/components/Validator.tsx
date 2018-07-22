@@ -1,7 +1,10 @@
 import * as React from 'react';
+import { startCase } from 'lodash';
+import { Rules } from '../rules/_';
+import { ApplyRule } from '../rules/ApplyRule';
 
-interface Rules {
-    [key:string]:  Array<Function>
+interface RulesInterface {
+    [key:string]:  Array<string>
 }
 
 interface Messages {
@@ -15,7 +18,7 @@ interface Form {
 interface Props {
     touched: Array<string>;
     form: Form;
-    rules: Rules;
+    rules: RulesInterface;
     messages: Messages;
     onChange: Function;
 }
@@ -32,6 +35,8 @@ interface ValidationState {
 interface ValidationStateFields {
     [key:string]: any
 }
+
+const Rule = new ApplyRule;
 
 class Validator extends React.Component<Props, States>
 {
@@ -78,7 +83,7 @@ class Validator extends React.Component<Props, States>
             if(!this.props.rules[field] || !messages[field])
             { continue; }
 
-            var validation = this.getDataValidity(form[field], this.props.rules[field], messages[field]);
+            var validation = this.getDataValidity(field, form[field], this.props.rules[field], messages[field]);
             states.fields[field] = {
                 field: field,
                 value: form[field],
@@ -96,23 +101,39 @@ class Validator extends React.Component<Props, States>
         { this.props.onChange(states); }
     }
     
-    private getDataValidity(value:any, rules:Array<Function>, messages?:Messages)
+    private getDataValidity(field:string, value:any, rules:Array<string>, messages?:Messages)
     {
         // 
-        var valid = true, error = null, rule;
+        var valid = true, 
+            error = null, 
+            rule,
+            customMessage:string|false;
         
         if(rules && messages)
         {
             // 
-            for(var i in rules)
+            for(var i = 0; i < rules.length; i++)
             {
-                if(!rules.hasOwnProperty(i))
-                { continue; }
+                // seperate rule from arguments
+                rule = rules[i].split(':');
 
-                rule = rules[i];
+                // aply rules to field
+                var appliedRule = Rule.apply(this.props.form, value, rule[0], rule[1] || '');
 
-                if(!rule(value))
-                { valid = false; error = messages[i]; break; }
+                // set custom message
+                customMessage = typeof messages[field+rule[0]] == 'string' 
+                                ? messages[field+rule[0]] 
+                                : typeof appliedRule.error == 'string' 
+                                    ? appliedRule.error : false;
+
+                // add field name is specified in the error.
+                if(typeof customMessage == 'string'){
+                    customMessage = customMessage.replace(':field', field);
+                    customMessage = startCase(customMessage);
+                }
+                // set return values
+                valid = appliedRule.error ? false : true; 
+                error = customMessage; break;
             }
         }
 
@@ -122,16 +143,20 @@ class Validator extends React.Component<Props, States>
 
     private updateTouchedData(prevForm:Form, newform:Form)
     {
-       var touched = [...this.state.touched];
-       var wasTouched = false;
+        var touched = [...this.state.touched];
+        var wasTouched = false;
 
+        /**
+         * :NOTES
+         * this seems like a dead code, consider removing it.
+         */
         if(JSON.stringify(prevForm) !== JSON.stringify(newform))
         {
             wasTouched = true;
         }
 
-       for(var field in prevForm)
-       {
+        for(var field in prevForm)
+        {
             if(
                 prevForm[field] != newform[field] && 
                 (this.props.rules[field] && this.props.messages[field])
@@ -139,9 +164,9 @@ class Validator extends React.Component<Props, States>
                 touched.push(field);
                 wasTouched = true;
             }
-       }
+        }
 
-       if(wasTouched)
+        if(wasTouched)
         { 
            this.setState({touched: touched}); 
            this.fireOnChangeCallback();

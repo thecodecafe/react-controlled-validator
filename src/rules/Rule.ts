@@ -25,7 +25,9 @@ export default class MainRule
         return 'Rule';
     }
 
-    valid(value: any){}
+    valid(value: string|boolean|null|number):string|boolean{
+        return true;
+    }
 
     toStringTag()
     {

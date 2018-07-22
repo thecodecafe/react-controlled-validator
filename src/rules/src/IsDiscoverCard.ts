@@ -1,6 +1,5 @@
 import Rule from '../Rule'
-import { CardChecker } from '../../utils/misc';
-import { CARD_TYPES } from '../../utils/constants';
+import { CardChecker, CARD_TYPES } from '../../utils/misc';
 
 export class IsDiscoverCard extends Rule
 {

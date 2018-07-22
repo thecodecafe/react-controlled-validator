@@ -1,6 +1,6 @@
 import Rule from '../Rule'
 
-export class AfterDate extends Rule
+export class BeforeDate extends Rule
 {
     date: Date;
 

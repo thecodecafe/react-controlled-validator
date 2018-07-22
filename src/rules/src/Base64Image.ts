@@ -7,7 +7,7 @@ export class Base64Image extends Rule
     constructor(formats: string)
     {
         super();
-        this.formats = formats;
+        this.formats = formats.replace(new RegExp(/^(\,)$/), '|');
         this.failed(`Field must be a base 64 image.`);
     }
 

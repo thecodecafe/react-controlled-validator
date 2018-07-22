@@ -8,10 +8,11 @@ export class IsRequired extends Rule
         this.failed('This field is required.');
     }
 
-    valid(value:string)
+    valid(value:string|boolean|null)
     {
-        if(value == undefined) return false;
-        if(value == null) return false;
+        if(value == undefined || value == null) {
+            return false;
+        }
         value = value+'';
         return value.length > 0 || this.getError();
     }

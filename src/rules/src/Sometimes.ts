@@ -2,20 +2,24 @@ import Rule from '../Rule'
 
 export class Sometimes extends Rule
 {
-    rule: Function;
-    constructor(rule:Function)
+    constructor()
     {
         super();
-        this.rule = rule;
+        this.failed('This field is required.');
     }
 
     valid(value:string)
     {
-        if( value !== undefined && value !== null)
+        if( value === undefined)
         {
-            return this.rule(value);
+            return true;
         }
-        return true;
+        
+        if(value == undefined || value == null) {
+            return false;
+        }
+        value = value+'';
+        return value.length > 0 || this.getError();
     }
 
     toString()

@@ -5,11 +5,11 @@ export class IsBetween extends Rule
     min:number;
     max:number;
 
-    constructor(min: number, max: number)
+    constructor(min: any, max: any)
     {
         super();
-        this.min = min;
-        this.max = max;
+        this.min = parseInt(min);
+        this.max = parseInt(max);
         this.failed(`Field must be greater than or equal to ${min} and less than or equal to ${max}.`);
     }
 

@@ -3,16 +3,16 @@ import Rule from '../Rule'
 export class Max extends Rule
 {
     max:number;
-    constructor(max: number)
+    constructor(max: any)
     {
         super();
-        this.max = max;
+        this.max = parseInt(max);
         this.failed(`Field cannot be greater than ${max} in value.`);
     }
 
-    valid(value: number)
+    valid(value: string)
     {
-        return value <= this.max || this.getError();
+        return parseInt(value) <= this.max || this.getError();
     }
 
     toString()

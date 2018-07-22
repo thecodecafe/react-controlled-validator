@@ -1,24 +1,30 @@
 import Rule from '../Rule'
+import { FormInterface } from '../../utils/intefaces';
 
 export class IsRequiredWith extends Rule
 {
-    parentValue: any;
-    constructor(parentValue:any, parentName?:string)
+    form: FormInterface;
+    parents: Array<string>;
+    constructor(form:FormInterface, parents:string)
     {
         super();
-        if(!parentValue) throw new Error('Parent value is not specified.');
-        if(parentName){ this.failed(`This field is required with ${parentName}.`); }
-        else if(!parentName){ this.failed('This field requires another field.'); }
+        if(!form) throw new Error('This field is required.');
+        this.form = form;
+        this.parents = parents.split(',');
     }
 
-    valid(value:string)
+    valid(value:string|boolean|null)
     {
-        if(this.parentValue === undefined || this.parentValue === null)
-        {
-            return true;
+        for(var i = 0; i < this.parents.length; i++){
+            var parent:string = this.parents[i];
+            if(this.form[parent] === undefined || this.form[parent] === null)
+            {
+                return true;
+            }
         }
-        if(value === undefined) return false;
-        if(value === null) return false;
+        if(value === undefined || value === null) {
+            return false;
+        }
         value = value+'';
         return value.length > 0 || this.getError();
     }

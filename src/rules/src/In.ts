@@ -2,16 +2,16 @@ import Rule from '../Rule'
 
 export class In extends Rule
 {
-    list:Array<number | string>;
-    constructor(list:Array<number | string>)
+    list:Array<string|boolean|null>;
+    constructor(list:string)
     {
         super();
-        this.list = list;
+        this.list = list.split(',');
         this.failed('Value was not found in supplied list.');
     }
-    valid(value: number | string)
+    valid(value:string|boolean|null)
     {
-        return this.list.indexOf(value) || this.getError();
+        return this.list.indexOf(value) != -1 || this.getError();
     }
 
     toString()

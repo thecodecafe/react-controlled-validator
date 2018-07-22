@@ -3,10 +3,10 @@ import Rule from '../Rule'
 export class MinLength extends Rule
 {
     minLength:number;
-    constructor(minLength: number)
+    constructor(minLength: string)
     {
         super();
-        this.minLength = minLength;
+        this.minLength = parseInt(minLength);
         this.failed(`Field cannot be less than ${minLength} in length.`);
     }
 
