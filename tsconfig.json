@@ -5,16 +5,18 @@
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
-        "sourceMap": true,
+        "sourceMap": false,
         "jsx": "react"
     },
     "include": [
-        "src/*",
-        "src/**/*",
-        "src/**/**/*",
+        "lib/*.ts",
+        "lib/*.tsx",
+        "lib/**/*.ts",
+        "lib/**/*.tsx",
+        "lib/**/**/*.ts",
+        "lib/**/**/*.tsx", "foo.js", "foo.tsx",
     ],
     "exclude": [
-        "lib",
         "node_modules",
         "**/*.spec.ts"
     ]

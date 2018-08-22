@@ -1,6 +1,6 @@
 {
   "name": "react-controlled-validator",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Validator for controlled inputs in react js and native.",
   "main": "lib/index.js",
   "scripts": {
