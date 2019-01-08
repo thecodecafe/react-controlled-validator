@@ -1,7 +1,7 @@
 import * as React from 'react';
 import startCase = require('lodash/startCase');
 import { ApplyRule } from '../rules/ApplyRule';
-import { Props, States, ValidationState, Form, Messages } from '../utils/intefaces';
+import { Props, States, ValidationState, Data, Messages } from '../utils/intefaces';
 
 /**
  * Instantiate the apply rule class.
@@ -26,7 +26,7 @@ export class Validator extends React.Component<Props, States>
     componentDidMount() {
         if(this.props.touched)
         {
-            var touched = Object.keys(this.props.form);
+            var touched = Object.keys(this.props.data);
             this.setState({touched: touched});
         }
         this.fireOnChangeCallback();
@@ -34,7 +34,7 @@ export class Validator extends React.Component<Props, States>
 
     componentDidUpdate(prevProps:Props)
     {
-        this.updateTouchedData(prevProps.form, this.props.form);
+        this.updateTouchedData(prevProps.data, this.props.data);
     }
 
     render()
@@ -45,24 +45,24 @@ export class Validator extends React.Component<Props, States>
     private fireOnChangeCallback()
     {
         var states:ValidationState; states = { valid: true, fields: {} };
-        var form = this.props.form;
+        var data = this.props.data;
         var messages: any; messages = this.props.messages;
-        var fields = Object.keys(form);
+        var fields = Object.keys(data);
 
         for(var i = 0; i < fields.length; i++)
         {
             var field = fields[i];
 
-            if(!form.hasOwnProperty(field))
+            if(!data.hasOwnProperty(field))
             { continue; }
 
             if(!this.props.rules[field] || !messages[field])
             { continue; }
 
-            var validation = this.getDataValidity(field, form[field], this.props.rules[field], messages[field]);
+            var validation = this.getDataValidity(field, data[field], this.props.rules[field], messages[field]);
             states.fields[field] = {
                 field: field,
-                value: form[field],
+                value: data[field],
                 touched: this.props.touched.indexOf(field) != -1 ? true : false,
                 error: validation.error, 
             };
@@ -92,7 +92,7 @@ export class Validator extends React.Component<Props, States>
                 rule = rules[i].split(':');
 
                 // aply rules to field
-                var appliedRule = Rule.apply(this.props.form, value, rule[0], rule[1] || '');
+                var appliedRule = Rule.apply(this.props.data, value, rule[0], rule[1] || '');
 
                 if(rule[0] == 'sometimes' && appliedRule.error == false){
                     error = false;
@@ -122,7 +122,7 @@ export class Validator extends React.Component<Props, States>
         return { error: error };
     }
 
-    private updateTouchedData(prevForm:Form, newform:Form)
+    private updateTouchedData(prevData:Data, newData:Data)
     {
         var touched = [...this.state.touched];
         var wasTouched = false;
@@ -131,15 +131,15 @@ export class Validator extends React.Component<Props, States>
          * :NOTES
          * this seems like a dead code, consider removing it.
          */
-        if(JSON.stringify(prevForm) !== JSON.stringify(newform))
+        if(JSON.stringify(prevData) !== JSON.stringify(newData))
         {
             wasTouched = true;
         }
 
-        for(var field in prevForm)
+        for(var field in prevData)
         {
             if(
-                prevForm[field] != newform[field] && 
+                prevData[field] != newData[field] && 
                 (this.props.rules[field] && this.props.messages[field])
             ){ 
                 touched.push(field);

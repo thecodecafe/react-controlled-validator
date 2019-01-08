@@ -15,13 +15,13 @@ export interface Messages {
     [key:string]:  string
 }
 
-export interface Form {
+export interface Data {
     [key:string]:  any
 }
 
 export interface Props {
     touched: Array<string>;
-    form: Form;
+    data: Data;
     rules: RulesInterface;
     messages: Messages;
     onChange: Function;
