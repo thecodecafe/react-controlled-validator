@@ -1,4 +1,4 @@
-var error: string;
+var errorMessage: string;
 
 export class MainRule
 {
@@ -6,13 +6,13 @@ export class MainRule
 
     failed(message:string)
     {
-        error = message;
+        errorMessage = message;
         return this;
     }
 
-    getError()
+    getErrorMessage()
     {
-        return error;
+        return errorMessage;
     }
     
     toString()
@@ -25,8 +25,8 @@ export class MainRule
         return 'Rule';
     }
 
-    valid(value: string|boolean|null|number):string|boolean{
-        return true;
+    validationMessage(value: string|boolean|null|number):string|boolean{
+        return false;
     }
 
     toStringTag()

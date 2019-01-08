@@ -10,9 +10,9 @@ export class MaxLength extends Rule
         this.failed(`:field cannot be greater than ${maxLength} in length.`);
     }
 
-    valid(value: string)
+    validationMessage(value: string)
     {
-        return value.length <= this.maxLength || this.getError();
+        return value.length > this.maxLength ? this.getErrorMessage() : false;
     }
 
     toString()

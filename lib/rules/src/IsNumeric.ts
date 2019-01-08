@@ -8,10 +8,10 @@ export class IsNumeric extends Rule
         this.failed(':field must be numeric in value.');
     }
 
-    valid(value:string)
+    validationMessage(value:string)
     {
         var re = /^[0-9\b]+$/im;
-        return re.test(value) || this.getError();
+        return !re.test(value) ? this.getErrorMessage() : false;
     }
 
     toString()

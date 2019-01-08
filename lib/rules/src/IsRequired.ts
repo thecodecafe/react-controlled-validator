@@ -8,13 +8,13 @@ export class IsRequired extends Rule
         this.failed(':field is required.');
     }
 
-    valid(value:string|boolean|null)
+    validationMessage(value:string|boolean|null)
     {
         if(value == undefined || value == null) {
             return false;
         }
         value = value+'';
-        return value.length > 0 || this.getError();
+        return value.length < 1 ? this.getErrorMessage() : false;
     }
 
     toString()

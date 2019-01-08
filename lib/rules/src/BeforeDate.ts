@@ -11,10 +11,10 @@ export class BeforeDate extends Rule
         this.failed(`:field must be before ${this.date.getFullYear()+'/'+(this.date.getMonth() + 1)+this.date.getDate()}`);
     }
 
-    valid(value: string)
+    validationMessage(value: string)
     {
         var now = new Date(value);
-        return  now.getTime() < this.date.getTime() || this.getError();
+        return  now.getTime() > this.date.getTime() ? this.getErrorMessage() : false;
     }
 
     toString()

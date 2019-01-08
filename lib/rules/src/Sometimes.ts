@@ -8,12 +8,12 @@ export class Sometimes extends Rule
         this.failed('_');
     }
 
-    valid(value:string)
+    validationMessage(value:string)
     {   
         if(value == undefined || value == null) {
             return false;
         }
-        return this.getError();
+        return this.getErrorMessage();
     }
 
     toString()

@@ -10,9 +10,9 @@ export class Min extends Rule
         this.failed(`:field cannot be lesser than ${min} in value.`);
     }
 
-    valid(value: number)
+    validionMessage(value: number)
     {
-        return value >= this.min || this.getError();
+        return value < this.min ? this.getErrorMessage() : false;
     }
 
     toString()

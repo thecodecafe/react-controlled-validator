@@ -10,9 +10,9 @@ export class MinLength extends Rule
         this.failed(`:field cannot be less than ${minLength} in length.`);
     }
 
-    valid(value: string)
+    validationMessage(value: string)
     {
-        return value.length >= this.minLength || this.getError();
+        return value.length < this.minLength ? this.getErrorMessage() : false;
     }
 
     toString()

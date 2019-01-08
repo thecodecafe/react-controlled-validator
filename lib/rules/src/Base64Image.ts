@@ -11,10 +11,10 @@ export class Base64Image extends Rule
         this.failed(`:field must be a base 64 image.`);
     }
 
-    valid(value: string)
+    validationMessage(value: string)
     {
         var regex = new RegExp('\"data:image\/('+this.formats+');base64,([^\"]*)\"', 'i');
-        return regex.test(value) || this.getError();
+        return !regex.test(value) ? this.getErrorMessage() : false;
     }
 
     toString()

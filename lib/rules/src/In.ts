@@ -9,9 +9,9 @@ export class In extends Rule
         this.list = list.split(',');
         this.failed('The selected option is invalid.');
     }
-    valid(value:string|boolean|null)
+    validationMessage(value:string|boolean|null)
     {
-        return this.list.indexOf(value) != -1 || this.getError();
+        return this.list.indexOf(value) === -1 ? this.getErrorMessage() : false;
     }
 
     toString()

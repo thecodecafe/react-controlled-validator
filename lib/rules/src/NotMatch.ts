@@ -1,23 +1,23 @@
 import startCase = require('lodash/startCase');
 import Rule from '../Rule'
-import { FormInterface } from '../../utils/intefaces';
+import { DataInterface } from '../../utils/intefaces';
 
 export class NotMatch extends Rule
 {
     first:any;
-    form:FormInterface
+    data:DataInterface;
 
-    constructor(form:FormInterface, first: any)
+    constructor(data:DataInterface, first: any)
     {
         super();
         this.first = first;
-        this.form = form;
+        this.data = data;
         this.failed(`:field does not match ${startCase(first)}.`);
     }
 
-    valid(value: string)
+    validationMessage(value: string)
     {
-        return value !== this.form[this.first] || this.getError();
+        return value === this.data[this.first] ? this.getErrorMessage() : false;
     }
 
     toString()

@@ -8,9 +8,9 @@ export class IsAmericanExpress extends Rule
         super();
         this.failed('That is not an american express card.');
     }
-    valid(value: string)
+    validationMessage(value: string)
     {
-        return CardChecker(CARD_TYPES.AMERICAN_EXPRESS, value) || this.getError();
+        return !CardChecker(CARD_TYPES.AMERICAN_EXPRESS, value) ? this.getErrorMessage() : false;
     }
 
     toString()

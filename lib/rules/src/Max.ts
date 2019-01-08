@@ -10,9 +10,9 @@ export class Max extends Rule
         this.failed(`:field cannot be greater than ${max} in value.`);
     }
 
-    valid(value: string)
+    validationMessage(value: string)
     {
-        return parseInt(value) <= this.max || this.getError();
+        return parseInt(value) > this.max ? this.getErrorMessage() : false;
     }
 
     toString()

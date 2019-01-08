@@ -1,34 +1,34 @@
 import startCase = require('lodash/startCase');
 import Rule from '../Rule'
-import { FormInterface } from '../../utils/intefaces';
+import { DataInterface } from '../../utils/intefaces';
 
 export class IsRequiredWith extends Rule
 {
-    form: FormInterface;
+    data: DataInterface;
     parents: Array<string>;
-    constructor(form:FormInterface, parents:string)
+    constructor(data:DataInterface, parents:string)
     {
         super();
-        if(!form) throw new Error('Form not specified for required with.');
-        this.form = form;
+        if(!data) throw new Error('Form not specified for required with.');
+        this.data = data;
         this.parents = parents.split(',');
         this.failed(`:field is required with ${startCase(parents)}.`);
     }
 
-    valid(value:any)
+    validationMessage(value:any)
     {
         for(var i = 0; i < this.parents.length; i++){
             var parent:string = this.parents[i];
-            if(this.form[parent] === undefined || this.form[parent] === null)
+            if(this.data[parent] === undefined || this.data[parent] === null)
             {
-                return true;
+                return false;
             }
         }
         if(value === undefined || value === null) {
-            return this.getError();
+            return this.getErrorMessage();
         }
         value = value+'';
-        return value.length > 0 || this.getError();
+        return value.length < 1 ? this.getErrorMessage() : false;
     }
 
     toString()

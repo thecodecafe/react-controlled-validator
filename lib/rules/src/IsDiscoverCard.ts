@@ -8,9 +8,9 @@ export class IsDiscoverCard extends Rule
         super();
         this.failed('That is not a discover card.');
     }
-    valid(value: string)
+    validationMessage(value: string)
     {
-        return CardChecker(CARD_TYPES.DISCOVER, value) || this.getError();
+        return !CardChecker(CARD_TYPES.DISCOVER, value) ? this.getErrorMessage() : false;
     }
 
     toString()

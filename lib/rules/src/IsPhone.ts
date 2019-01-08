@@ -8,10 +8,10 @@ export class IsPhone extends Rule
         this.failed(':field is not a phone number.');
     }
 
-    valid(value:string)
+    validationMessage(value:string)
     {
         var re = /^[\+]?[(]?[0-9]{6,14}[)]?$/im;
-        return re.test(value) || this.getError();
+        return !re.test(value) ? this.getErrorMessage() : false;
     }
 
     toString()

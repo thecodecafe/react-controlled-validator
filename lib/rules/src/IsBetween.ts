@@ -13,9 +13,15 @@ export class IsBetween extends Rule
         this.failed(`:field must be greater than or equal to ${min} and less than or equal to ${max}.`);
     }
 
-    valid(value: string)
+    validationMessage(value: string|number)
     {
-        return value && (value.length >= this.min && value.length <= this.max ) || this.getError();
+        if(typeof value === 'number'){
+            return value < this.min || value > this.max ? this.getErrorMessage() : false;
+        }
+        if(typeof value === 'string'){
+            return value.length < this.min || value.length > this.max ? this.getErrorMessage() : false;
+        }
+        return false;
     }
 
     toString()

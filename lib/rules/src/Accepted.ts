@@ -7,9 +7,9 @@ export class Accepted extends Rule
         super();
         this.failed('Please accept :field.');
     }
-    valid(value: boolean)
+    validationMessage(value: boolean)
     {
-        return value === true || this.getError();
+        return value !== true ? this.getErrorMessage() : false;
     }
     toString()
     {

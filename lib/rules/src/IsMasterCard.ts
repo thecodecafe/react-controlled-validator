@@ -8,9 +8,9 @@ export class IsMasterCard extends Rule
         super();
         this.failed('That is not a mastercard.');
     }
-    valid(value: string)
+    validationMessage(value: string)
     {
-        return CardChecker(CARD_TYPES.MASTERCARD, value) || this.getError();
+        return !CardChecker(CARD_TYPES.MASTERCARD, value) ? this.getErrorMessage() : false;
     }
 
     toString()

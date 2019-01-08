@@ -8,10 +8,10 @@ export class IsNGMobile extends Rule
         this.failed(':field is not a Nigerian mobile phone number.');
     }
 
-    valid(value:string)
+    validationMessage(value:string)
     {
         var re = /^[0-9]{11}?$/im;
-        return re.test(value) || this.getError();
+        return !re.test(value) ? this.getErrorMessage() : false;
     }
 
     toString()

@@ -8,9 +8,9 @@ export class IsVisa extends Rule
         super();
         this.failed('That is not a visa card.');
     }
-    valid(value: string)
+    validationMessage(value: string)
     {
-        return CardChecker(CARD_TYPES.VISA, value) || this.getError();
+        return !CardChecker(CARD_TYPES.VISA, value) ? this.getErrorMessage() : false;
     }
 
     toString()
