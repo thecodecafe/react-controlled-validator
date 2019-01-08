@@ -63,7 +63,7 @@ export class Validator extends React.Component<Props, States>
             states.fields[field] = {
                 field: field,
                 value: data[field],
-                touched: this.props.touched.indexOf(field) != -1 ? true : false,
+                touched: (this.props.touched && this.props.touched.indexOf(field)) != -1 ? true : false,
                 error: validation.error, 
             };
 
@@ -79,9 +79,9 @@ export class Validator extends React.Component<Props, States>
     private getDataValidity(field:string, value:any, rules:Array<string>, messages?:Messages)
     {
         // 
-        var error:string|false|null = null, 
+        var error:string|Boolean|null = null, 
             rule,
-            customMessage:string|false;
+            customMessage:string|Boolean;
         
         if(rules && messages)
         {
@@ -100,7 +100,7 @@ export class Validator extends React.Component<Props, States>
                 }
 
                 // set custom message when there is an error
-                if(typeof appliedRule.error == 'string'){
+                if(appliedRule.error){
                     customMessage = typeof messages[field+rule[0]] == 'string' 
                                     ? messages[field+rule[0]] 
                                     : appliedRule.error;
