@@ -1,10 +1,10 @@
-export interface FormInterface{
+export interface DataInterface{
     [key:string]: string|number|boolean|void
 };
 
 export interface ReturnInterface {
-    error:string|boolean;
-    ruleName:string
+    error?:string|boolean;
+    ruleName?:string
 };
 
 export interface RulesInterface {
@@ -20,7 +20,7 @@ export interface Data {
 }
 
 export interface Props {
-    touched: Array<string>;
+    touched?: Array<string>;
     data: Data;
     rules: RulesInterface;
     messages: Messages;
