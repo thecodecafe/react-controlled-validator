@@ -1,18 +1,23 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const Rule_1 = require("../Rule");
-class IsUsername extends Rule_1.default {
-    constructor() {
+import Rule from '../Rule'
+
+export class IsUsername extends Rule
+{
+    constructor()
+    {
         super();
         this.failed(':field only accepts alphanumeric characters and dashes and underscore characters in between.');
     }
-    valid(value) {
+
+    valid(value:string)
+    {
         var re = /^[A-Za-z0-9]+(?:[\_\-][A-Za-z0-9]+)*$/;
         return re.test(value) || this.getError();
     }
-    toString() {
+
+    toString()
+    {
         return 'is username';
     }
 }
-exports.IsUsername = IsUsername;
-exports.default = IsUsername;
+
+export default IsUsername;

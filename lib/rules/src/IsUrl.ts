@@ -1,18 +1,23 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const Rule_1 = require("../Rule");
-class IsUrl extends Rule_1.default {
-    constructor() {
+import Rule from '../Rule'
+
+export class IsUrl extends Rule
+{
+    constructor()
+    {
         super();
         this.failed(':field must be a valid url.');
     }
-    valid(value) {
+
+    valid(value:string)
+    {
         var re = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
         return re.test(value) || this.getError();
     }
-    toString() {
+
+    toString()
+    {
         return 'is url';
     }
 }
-exports.IsUrl = IsUrl;
-exports.default = IsUrl;
+
+export default IsUrl;

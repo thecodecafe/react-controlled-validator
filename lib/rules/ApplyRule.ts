@@ -1,169 +1,177 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const Accepted_1 = require("./src/Accepted");
-const AfterDate_1 = require("./src/AfterDate");
-const BeforeDate_1 = require("./src/BeforeDate");
-const Base64Image_1 = require("./src/Base64Image");
-const In_1 = require("./src/In");
-const IsAmericanExpress_1 = require("./src/IsAmericanExpress");
-const IsBetween_1 = require("./src/IsBetween");
-const IsDiscoverCard_1 = require("./src/IsDiscoverCard");
-const IsEmail_1 = require("./src/IsEmail");
-const IsMasterCard_1 = require("./src/IsMasterCard");
-const IsNGMobile_1 = require("./src/IsNGMobile");
-const IsNumeric_1 = require("./src/IsNumeric");
-const IsPhone_1 = require("./src/IsPhone");
-const IsPhoneNational_1 = require("./src/IsPhoneNational");
-const IsRequired_1 = require("./src/IsRequired");
-const IsRequiredWith_1 = require("./src/IsRequiredWith");
-const IsUsername_1 = require("./src/IsUsername");
-const IsVisa_1 = require("./src/IsVisa");
-const Match_1 = require("./src/Match");
-const Max_1 = require("./src/Max");
-const MaxLength_1 = require("./src/MaxLength");
-const Min_1 = require("./src/Min");
-const MinLength_1 = require("./src/MinLength");
-const NotMatch_1 = require("./src/NotMatch");
-const Sometimes_1 = require("./src/Sometimes");
-const IsUrl_1 = require("./src/IsUrl");
-class ApplyRule {
-    apply(form, value, rule, args) {
-        var result;
-        var RuleClass;
-        switch (rule) {
+import { Accepted } from './src/Accepted';
+import { AfterDate } from './src/AfterDate';
+import { BeforeDate } from './src/BeforeDate';
+import { Base64Image } from './src/Base64Image';
+import { In } from './src/In';
+import { IsAmericanExpress } from './src/IsAmericanExpress';
+import { IsBetween } from './src/IsBetween';
+import { IsDiscoverCard } from './src/IsDiscoverCard';
+import { IsEmail } from './src/IsEmail';
+import { IsMasterCard } from './src/IsMasterCard';
+import { IsNGMobile } from './src/IsNGMobile';
+import { IsNumeric } from './src/IsNumeric';
+import { IsPhone } from './src/IsPhone';
+import { IsPhoneNational } from './src/IsPhoneNational';
+import { IsRequired } from './src/IsRequired';
+import { IsRequiredWith } from './src/IsRequiredWith';
+import { IsUsername } from './src/IsUsername';
+import { IsVisa } from './src/IsVisa';
+import { Match } from './src/Match';
+import { Max } from './src/Max';
+import { MaxLength } from './src/MaxLength';
+import { Min } from './src/Min';
+import { MinLength } from './src/MinLength';
+import { NotMatch } from './src/NotMatch';
+import { Sometimes } from './src/Sometimes';
+import { IsUrl } from './src/IsUrl';
+import { FormInterface, ReturnInterface } from '../utils/intefaces';
+import MainRule from './Rule';
+
+export class ApplyRule{
+    apply(
+        form:FormInterface,
+        value:string|boolean|null,
+        rule:string,
+        args:string|null
+    ){
+        var result:ReturnInterface;
+        var RuleClass:MainRule;
+        switch(rule)
+        {
             case 'required':
-                RuleClass = new IsRequired_1.IsRequired;
+                RuleClass = new IsRequired;
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'requiredWith':
-                RuleClass = new IsRequiredWith_1.IsRequiredWith(form, args);
+                RuleClass = new IsRequiredWith(form, args);
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'accepted':
-                RuleClass = new Accepted_1.Accepted;
+                RuleClass = new Accepted;
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'afterDate':
-                RuleClass = new AfterDate_1.AfterDate(args);
+                RuleClass = new AfterDate(args);
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'beforeDate':
-                RuleClass = new BeforeDate_1.BeforeDate(args);
+                RuleClass = new BeforeDate(args);
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'base64Image':
-                RuleClass = new Base64Image_1.Base64Image(args);
+                RuleClass = new Base64Image(args);
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'in':
-                RuleClass = new In_1.In(args);
+                RuleClass = new In(args);
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'americanExpress':
-                RuleClass = new IsAmericanExpress_1.IsAmericanExpress;
+                RuleClass = new IsAmericanExpress;
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'descoverCard':
-                RuleClass = new IsDiscoverCard_1.IsDiscoverCard;
+                RuleClass = new IsDiscoverCard;
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'masterCard':
-                RuleClass = new IsMasterCard_1.IsMasterCard;
+                RuleClass = new IsMasterCard;
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'visaCard':
-                RuleClass = new IsVisa_1.IsVisa;
+                RuleClass = new IsVisa;
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'email':
-                RuleClass = new IsEmail_1.IsEmail;
+                RuleClass = new IsEmail;
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'url':
-                RuleClass = new IsUrl_1.IsUrl;
+                RuleClass = new IsUrl;
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'ngMobile':
-                RuleClass = new IsNGMobile_1.IsNGMobile;
+                RuleClass = new IsNGMobile;
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'numeric':
-                RuleClass = new IsNumeric_1.IsNumeric;
+                RuleClass = new IsNumeric;
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'phone':
-                RuleClass = new IsPhone_1.IsPhone;
+                RuleClass = new IsPhone;
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'phoneNational':
-                RuleClass = new IsPhoneNational_1.IsPhoneNational;
+                RuleClass = new IsPhoneNational;
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'username':
-                RuleClass = new IsUsername_1.IsUsername;
+                RuleClass = new IsUsername;
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'match':
-                RuleClass = new Match_1.Match(form, args);
+                RuleClass = new Match(form, args);
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'notMatch':
-                RuleClass = new NotMatch_1.NotMatch(form, args);
+                RuleClass = new NotMatch(form, args);
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'max':
-                RuleClass = new Max_1.Max(args);
+                RuleClass = new Max(args);
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'maxLength':
-                RuleClass = new MaxLength_1.MaxLength(args);
+                RuleClass = new MaxLength(args);
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'min':
-                RuleClass = new Min_1.Min(args);
+                RuleClass = new Min(args);
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'minLength':
-                RuleClass = new MinLength_1.MinLength(args);
+                RuleClass = new MinLength(args);
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'between':
-                RuleClass = new IsBetween_1.IsBetween(args.split(',')[0], args.split(',')[1]);
+                RuleClass = new IsBetween(args.split(',')[0], args.split(',')[1]);
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
             case 'sometimes':
-                RuleClass = new Sometimes_1.Sometimes;
+                RuleClass = new Sometimes;
                 result['error'] = RuleClass.valid(value);
                 result['ruleName'] = RuleClass.toString();
-                break;
+            break;
         }
+
         return result;
     }
 }
-exports.ApplyRule = ApplyRule;
-exports.default = ApplyRule;
+
+export default ApplyRule;

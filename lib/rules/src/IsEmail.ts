@@ -1,18 +1,23 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const Rule_1 = require("../Rule");
-class IsEmail extends Rule_1.default {
-    constructor() {
+import Rule from '../Rule'
+
+export class IsEmail extends Rule
+{
+    constructor()
+    {
         super();
         this.failed(':field must be a valid email address.');
     }
-    valid(value) {
+
+    valid(value:string)
+    {
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(value) || this.getError();
     }
-    toString() {
+
+    toString()
+    {
         return 'is email';
     }
 }
-exports.IsEmail = IsEmail;
-exports.default = IsEmail;
+
+export default IsEmail;
