@@ -59,8 +59,3 @@ typings/
 
 # next.js build output
 .next
-
-foo.js
-
-# compiled package scripts
-lib/
