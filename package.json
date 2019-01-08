@@ -20,8 +20,11 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/plugin-transform-typescript": "^7.0.0-beta.51",
+    "@types/lodash": "^4.14.112",
     "@types/react": "^16.4.6",
-    "@types/lodash": "^4.14.112"
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
+    "jest": "^23.6.0"
   },
   "dependencies": {
     "lodash": "^4.17.10",
