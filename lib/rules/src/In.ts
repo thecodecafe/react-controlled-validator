@@ -7,7 +7,7 @@ export class In extends Rule
     {
         super();
         this.list = list.split(',');
-        this.failed('The selected option is invalid.');
+        this.failed(':field is not in the list.');
     }
     validationMessage(value:string|boolean|null)
     {

@@ -6,7 +6,7 @@ export class IsAmericanExpress extends Rule
     constructor()
     {
         super();
-        this.failed('That is not an american express card.');
+        this.failed(':field must be a american express card number.');
     }
     validationMessage(value: string)
     {

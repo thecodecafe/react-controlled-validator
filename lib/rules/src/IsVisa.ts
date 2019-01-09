@@ -6,7 +6,7 @@ export class IsVisa extends Rule
     constructor()
     {
         super();
-        this.failed('That is not a visa card.');
+        this.failed(':field must be a visa card number.');
     }
     validationMessage(value: string)
     {
@@ -15,7 +15,7 @@ export class IsVisa extends Rule
 
     toString()
     {
-        return 'is visa';
+        return 'is visa card';
     }
 }
 

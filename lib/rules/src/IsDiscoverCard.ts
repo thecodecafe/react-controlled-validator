@@ -6,7 +6,7 @@ export class IsDiscoverCard extends Rule
     constructor()
     {
         super();
-        this.failed('That is not a discover card.');
+        this.failed(':field must be a discover card number.');
     }
     validationMessage(value: string)
     {

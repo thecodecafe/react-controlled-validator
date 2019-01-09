@@ -6,7 +6,7 @@ export class IsMasterCard extends Rule
     constructor()
     {
         super();
-        this.failed('That is not a mastercard.');
+        this.failed(':field must be a master card number.');
     }
     validationMessage(value: string)
     {

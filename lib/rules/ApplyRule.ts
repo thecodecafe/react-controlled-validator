@@ -11,18 +11,16 @@ import { IsMasterCard } from './src/IsMasterCard';
 import { IsNGMobile } from './src/IsNGMobile';
 import { IsNumeric } from './src/IsNumeric';
 import { IsPhone } from './src/IsPhone';
-import { IsPhoneNational } from './src/IsPhoneNational';
 import { IsRequired } from './src/IsRequired';
 import { IsRequiredWith } from './src/IsRequiredWith';
 import { IsUsername } from './src/IsUsername';
 import { IsVisa } from './src/IsVisa';
-import { Match } from './src/Match';
+import { Matches } from './src/Matches';
 import { Max } from './src/Max';
 import { MaxLength } from './src/MaxLength';
 import { Min } from './src/Min';
 import { MinLength } from './src/MinLength';
-import { NotMatch } from './src/NotMatch';
-import { Sometimes } from './src/Sometimes';
+import { DoesNotMatch } from './src/DoesNotMatch';
 import { IsUrl } from './src/IsUrl';
 import { DataInterface, ReturnInterface } from '../utils/intefaces';
 import MainRule from './Rule';
@@ -32,7 +30,7 @@ export class ApplyRule{
         data:DataInterface,
         value:string|boolean|null,
         rule:string,
-        args:string|null
+        args:any
     ){
         var result:ReturnInterface = {};
         var RuleClass:MainRule;
@@ -78,7 +76,7 @@ export class ApplyRule{
                 result['error'] = RuleClass.validationMessage(value);
                 result['ruleName'] = RuleClass.toString();
             break;
-            case 'descoverCard':
+            case 'discoverCard':
                 RuleClass = new IsDiscoverCard;
                 result['error'] = RuleClass.validationMessage(value);
                 result['ruleName'] = RuleClass.toString();
@@ -118,23 +116,18 @@ export class ApplyRule{
                 result['error'] = RuleClass.validationMessage(value);
                 result['ruleName'] = RuleClass.toString();
             break;
-            case 'phoneNational':
-                RuleClass = new IsPhoneNational;
-                result['error'] = RuleClass.validationMessage(value);
-                result['ruleName'] = RuleClass.toString();
-            break;
             case 'username':
                 RuleClass = new IsUsername;
                 result['error'] = RuleClass.validationMessage(value);
                 result['ruleName'] = RuleClass.toString();
             break;
-            case 'match':
-                RuleClass = new Match(data, args);
+            case 'matches':
+                RuleClass = new Matches(data, args);
                 result['error'] = RuleClass.validationMessage(value);
                 result['ruleName'] = RuleClass.toString();
             break;
-            case 'notMatch':
-                RuleClass = new NotMatch(data, args);
+            case 'doesNotMatch':
+                RuleClass = new DoesNotMatch(data, args);
                 result['error'] = RuleClass.validationMessage(value);
                 result['ruleName'] = RuleClass.toString();
             break;
@@ -159,12 +152,7 @@ export class ApplyRule{
                 result['ruleName'] = RuleClass.toString();
             break;
             case 'between':
-                RuleClass = new IsBetween(args.split(',')[0], args.split(',')[1]);
-                result['error'] = RuleClass.validationMessage(value);
-                result['ruleName'] = RuleClass.toString();
-            break;
-            case 'sometimes':
-                RuleClass = new Sometimes;
+                RuleClass = new IsBetween(args);
                 result['error'] = RuleClass.validationMessage(value);
                 result['ruleName'] = RuleClass.toString();
             break;

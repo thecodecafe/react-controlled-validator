@@ -10,7 +10,7 @@ export class IsNumeric extends Rule
 
     validationMessage(value:string)
     {
-        var re = /^[0-9\b]+$/im;
+        let re = /^[0-9\b]+\.?([0-9\b]+)?$/im;
         return !re.test(value) ? this.getErrorMessage() : false;
     }
 

@@ -5,7 +5,7 @@ export class IsNGMobile extends Rule
     constructor()
     {
         super();
-        this.failed(':field is not a Nigerian mobile phone number.');
+        this.failed(':field is must be a Nigerian mobile phone number.');
     }
 
     validationMessage(value:string)

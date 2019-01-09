@@ -11,18 +11,16 @@ import { IsMasterCard } from './src/IsMasterCard';
 import { IsNGMobile } from './src/IsNGMobile';
 import { IsNumeric } from './src/IsNumeric';
 import { IsPhone } from './src/IsPhone';
-import { IsPhoneNational } from './src/IsPhoneNational';
 import { IsRequired } from './src/IsRequired';
 import { IsRequiredWith } from './src/IsRequiredWith';
 import { IsUsername } from './src/IsUsername';
 import { IsVisa } from './src/IsVisa';
-import { Match } from './src/Match';
+import { Matches } from './src/Matches';
 import { Max } from './src/Max';
 import { MaxLength } from './src/MaxLength';
 import { Min } from './src/Min';
 import { MinLength } from './src/MinLength';
-import { NotMatch } from './src/NotMatch';
-import { Sometimes } from './src/Sometimes';
+import { DoesNotMatch } from './src/DoesNotMatch';
 
 /**
  * Here we combine our rules into one file
@@ -32,8 +30,8 @@ export const Rules = {
     Accepted, AfterDate, BeforeDate, Base64Image, 
     In, IsAmericanExpress, IsDiscoverCard, IsVisa,
     IsMasterCard, IsBetween, IsEmail, IsNGMobile, IsNumeric,
-    IsPhone, IsPhoneNational, IsRequired, IsRequiredWith, IsUsername,
-    Match, Max, MaxLength, Min, MinLength, NotMatch, Sometimes
+    IsPhone, IsRequired, IsRequiredWith, IsUsername,
+    Matches, Max, MaxLength, Min, MinLength, DoesNotMatch
 };
 
 export default Rules;

@@ -5,7 +5,7 @@ export class IsEmail extends Rule
     constructor()
     {
         super();
-        this.failed(':field must be a valid email address.');
+        this.failed(':field must be an email address.');
     }
 
     validationMessage(value:string)

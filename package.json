@@ -4,7 +4,7 @@
   "description": "Validator for controlled inputs in react js and native.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "jest",
+    "test": "clear && jest",
     "start": "tsc --outDir lib -w"
   },
   "keywords": [

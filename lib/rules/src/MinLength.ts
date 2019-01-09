@@ -12,6 +12,11 @@ export class MinLength extends Rule
 
     validationMessage(value: string)
     {
+        // do not validate if min length is not a number
+        if(typeof this.minLength !== 'number') return false;
+        // do not validate if valid is not a string
+        if(typeof value !== 'string') return false;
+        // validate the minimum length
         return value.length < this.minLength ? this.getErrorMessage() : false;
     }
 

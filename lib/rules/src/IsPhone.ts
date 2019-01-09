@@ -5,12 +5,12 @@ export class IsPhone extends Rule
     constructor()
     {
         super();
-        this.failed(':field is not a phone number.');
+        this.failed(':field must be a phone number.');
     }
 
     validationMessage(value:string)
     {
-        var re = /^[\+]?[(]?[0-9]{6,14}[)]?$/im;
+        var re = /^[\+]?[(]?[0-9]{6,15}[)]?$/im;
         return !re.test(value) ? this.getErrorMessage() : false;
     }
 

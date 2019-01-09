@@ -8,7 +8,7 @@ export interface ReturnInterface {
 };
 
 export interface RulesInterface {
-    [key:string]:  Array<string|'requiredWith'|'accepted'|'afterDate'|'beforeDate'|'base64Image'|'in'|'americanExpress'|'descoverCard'|'masterCard'|'visaCard'|'email'|'url'|'ngMobile'|'numeric'|'phone'|'phoneNational'|'username'|'match'|'notMatch'|'max'|'maxLength'|'min'|'minLength'|'between'|'sometimes'>
+    [key:string]:  Array<string|'requiredWith'|'accepted'|'afterDate'|'beforeDate'|'base64Image'|'in'|'americanExpress'|'discoverCard'|'masterCard'|'visaCard'|'email'|'url'|'ngMobile'|'numeric'|'phone'|'phoneNational'|'username'|'match'|'notMatch'|'max'|'maxLength'|'min'|'minLength'|'between'|'sometimes'>
 }
 
 export interface Messages {
