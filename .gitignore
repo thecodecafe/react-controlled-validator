@@ -59,8 +59,3 @@ typings/
 
 # next.js build output
 .next
-
-# tests
-__test__/*
-__test__/**/*
-__test__/**/**/*
